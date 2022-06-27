@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 // defineProps<{ msg: string }>()
 withDefaults(defineProps<{ msg: string }>(), {
-  msg: 'hello',
+  msg: 'hello'
 })
 
 const count = ref(0)
