@@ -4,7 +4,6 @@ export interface User {
   username: string
   password: string
 }
-// 注释
 export const useUserStore = defineStore({
   id: 'user',
   state: (): User => {
