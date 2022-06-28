@@ -61,6 +61,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
+      "yarn fix",
+      "prettier --write"
     ]
   }
 }
