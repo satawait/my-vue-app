@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    'vue/setup-compiler-macros': true,
+    'vue/setup-compiler-macros': true
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -12,19 +12,19 @@ module.exports = {
     '@vue/typescript/recommended',
     'plugin:prettier/recommended',
     // eslint-config-prettier 的缩写
-    'prettier',
+    'prettier'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2021,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: ['vue', '@typescript-eslint', 'prettier'],
   globals: {
     ApiResponse: true,
     ApiRequest: true,
-    __DEV__: true,
+    __DEV__: true
   },
   rules: {
     eqeqeq: 'warn',
@@ -45,8 +45,8 @@ module.exports = {
       'warn',
       {
         capIsNewExceptions: ['ElMessage', 'Notify', 'Message', 'Toast'],
-        properties: false,
-      },
+        properties: false
+      }
     ],
     'no-useless-call': 'warn',
     'no-unused-expressions': ['warn', { allowShortCircuit: true, allowTernary: true }],
@@ -67,5 +67,5 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'warn',
     // 'no-undef': 'error',
     semi: ['warn', 'never']
-  },
+  }
 }
