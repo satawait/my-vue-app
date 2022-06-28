@@ -2,6 +2,7 @@
   <div>
     <input ref="upload" type="file" name="upload" id="upload" @change="changeFile" />
     <p>{{ `Mouse: x-${x}, y-${y}` }}</p>
+    <n-button @click="() => 1">好的</n-button>
   </div>
 </template>
 
