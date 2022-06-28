@@ -19,7 +19,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      resolvers: [naiveUiResolver()]
+      resolvers: [NaiveUiResolver()]
     }),
     // gzip压缩 生产环境生成 .gz 文件
     viteCompression({
