@@ -14,7 +14,7 @@ import request from '@/utils/request'
 // const $http = inject('$http')
 // console.log($http)
 request.get('127.0.0.1:3000')
-// console.log(import.meta.env)
+console.log(import.meta.env)
 const theme = darkTheme
 </script>
 
