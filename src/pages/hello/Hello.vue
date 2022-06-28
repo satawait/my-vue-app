@@ -4,7 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld
+ddd from './components/HelloWorld.vue'
 import { useUserStore } from '@/store/user'
 
 const userStore = useUserStore()

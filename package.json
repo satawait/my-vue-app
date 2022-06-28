@@ -59,16 +59,8 @@
       "path": "node_modules/cz-customizable"
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo \"123\"",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "yarn lint",
-      "prettier --write"
     ]
   }
 }
