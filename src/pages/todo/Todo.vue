@@ -6,6 +6,7 @@
   </div>
 </template>
 
+// set-up
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useMouse } from '@vueuse/core'
