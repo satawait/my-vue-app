@@ -54,15 +54,22 @@
     "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^0.34.7"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
       "yarn lint",
-      "prettier --write"
+      "prettier --write",
+      "git add"
     ]
   }
 }
