@@ -10,7 +10,7 @@
 import { ref } from 'vue'
 import { useMouse } from '@vueuse/core'
 const upload = ref()
-const { x, yy } = useMouse()
+const { x, y } = useMouse()
 const changeFile = (e: Event) => {
   console.log(e)
 }
