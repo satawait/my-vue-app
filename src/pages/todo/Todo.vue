@@ -49,12 +49,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
+import type { UploadFileInfo } from 'naive-ui'
 import * as user from '@/apis/user'
 import router from '@/routes'
 const size = 'large'
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
-const formValue = ref({
+interface IformValue {
+  username: string
+  password: string
+  file: UploadFileInfo[]
+}
+const formValue = ref<IformValue>({
   username: '',
   password: '',
   file: []
@@ -87,11 +93,18 @@ const rules: FormRules = {
 }
 const handlerObj = {
   registerUser: () => {
-    return user.registerUser({
-      username: formValue.value.username,
-      password: formValue.value.password,
-      file: formValue.value.file[0]
-    })
+    if (formValue.value.file[0]?.file) {
+      return user.registerUser({
+        username: formValue.value.username,
+        password: formValue.value.password,
+        file: formValue.value.file[0].file
+      })
+    } else {
+      return user.registerUser({
+        username: formValue.value.username,
+        password: formValue.value.password
+      })
+    }
   },
   deleteUser: () => {
     return user.registerUser({

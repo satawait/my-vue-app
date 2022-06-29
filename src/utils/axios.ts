@@ -6,11 +6,12 @@ import axios, {
   AxiosError
 } from 'axios'
 import NProgress from 'nprogress'
-import { useRouter } from 'vue-router'
+import qs from 'qs'
+import router from '@/routes'
 
 const CancelToken = axios.CancelToken
 const instance = axios.create()
-const router = useRouter()
+console.log(router)
 
 class HttpRequest {
   private baseUrl: string
@@ -55,12 +56,12 @@ class HttpRequest {
       (config) => {
         NProgress.start()
         const authorization = localStorage.getItem('authorization')
-        if (authorization) {
-          config.headers = {
-            ...config.headers,
-            authorization: `Bearer ${authorization}`
-          }
+        // if (authorization) {
+        config.headers = {
+          ...config.headers,
+          authorization: `Bearer ${authorization}`
         }
+        // }
         const key = config.url + '&' + config.method
         this.removePending(key, true)
         config.cancelToken = new CancelToken((c) => {
@@ -104,11 +105,12 @@ class HttpRequest {
     return res.data
   }
 
-  get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  get<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
+    const querys = qs.stringify(data)
     const options = Object.assign(
       {
         method: 'get',
-        url: url
+        url: `${url}?${querys}`
       },
       config
     )
