@@ -1,6 +1,6 @@
 export default {
   baseUrl: {
-    dev: 'http://localhost:3000',
-    prod: 'http://localhost:3000'
+    dev: 'http://localhost:8000',
+    prod: 'http://localhost:8000'
   }
 }

@@ -1,19 +1,16 @@
 import { defineStore } from 'pinia'
+import { IUser } from '@/types'
 
-export interface User {
-  username: string
-  password: string
-}
 export const useUserStore = defineStore({
   id: 'user',
-  state: (): User => {
+  state: (): IUser => {
     return {
       username: 'admin',
       password: 'admin'
     }
   },
   actions: {
-    async updateUser(user: User) {
+    async updateUser(user: IUser) {
       this.username = user.username
       this.password = user.password
     }

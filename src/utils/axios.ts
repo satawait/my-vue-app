@@ -6,18 +6,11 @@ import axios, {
   AxiosError
 } from 'axios'
 import NProgress from 'nprogress'
+import { useRouter } from 'vue-router'
 
 const CancelToken = axios.CancelToken
 const instance = axios.create()
-interface HttpResponse<T> {
-  code: number
-  data?: T
-  msg: string
-  err?: string
-}
-interface FileFormData extends FormData {
-  file: File
-}
+const router = useRouter()
 
 class HttpRequest {
   private baseUrl: string
@@ -26,6 +19,7 @@ class HttpRequest {
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
     this.pending = {}
+    this.interceptors(instance)
   }
 
   // 获取axios配置
@@ -49,6 +43,10 @@ class HttpRequest {
 
   async errorHandle(err: AxiosError) {
     console.log(err.message)
+    if (err.response?.status === 401) {
+      localStorage.removeItem('authorization')
+      router.push({ name: 'Login' })
+    }
   }
 
   // 设定拦截器
@@ -56,11 +54,11 @@ class HttpRequest {
     instance.interceptors.request.use(
       (config) => {
         NProgress.start()
-        const token = window.localStorage.getItem('token')
-        if (token) {
+        const authorization = localStorage.getItem('authorization')
+        if (authorization) {
           config.headers = {
             ...config.headers,
-            Authorization: `Bearer ${token}`
+            authorization: `Bearer ${authorization}`
           }
         }
         const key = config.url + '&' + config.method
@@ -79,11 +77,15 @@ class HttpRequest {
     // 响应请求的拦截器
     instance.interceptors.response.use(
       (res) => {
+        console.log(res)
         NProgress.done()
         const key = res.config.url + '&' + res.config.method
         this.removePending(key)
         if (res.status === 200) {
-          return Promise.resolve(res.data)
+          return Promise.resolve(res)
+        } else if (res.status === 401) {
+          localStorage.removeItem('authorization')
+          router.push({ name: 'Login' })
         } else {
           return Promise.reject(res)
         }
@@ -96,16 +98,13 @@ class HttpRequest {
   }
 
   // 创建实例
-  request(options: AxiosRequestConfig, type?: string) {
+  async request<T>(options: AxiosRequestConfig, type?: string): Promise<T> {
     const newOptions = Object.assign(this.getInsideConfig(type), options)
-    this.interceptors(instance)
-    return instance(newOptions)
+    const res: AxiosResponse<T> = await instance(newOptions)
+    return res.data
   }
 
-  get<T>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<AxiosResponse> | Promise<HttpResponse<T>> {
+  get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const options = Object.assign(
       {
         method: 'get',
@@ -116,7 +115,7 @@ class HttpRequest {
     return this.request(options)
   }
 
-  post<T>(url: string, data?: unknown): Promise<AxiosResponse> | Promise<HttpResponse<T>> {
+  post<T>(url: string, data?: unknown): Promise<T> {
     return this.request({
       method: 'post',
       url: url,
@@ -124,10 +123,23 @@ class HttpRequest {
     })
   }
 
-  upload<T>(
-    url: string,
-    fileFormData: FileFormData
-  ): Promise<AxiosResponse> | Promise<HttpResponse<T>> {
+  put<T>(url: string, data?: unknown): Promise<T> {
+    return this.request({
+      method: 'put',
+      url: url,
+      data: data
+    })
+  }
+
+  delete<T>(url: string, data?: unknown): Promise<T> {
+    return this.request({
+      method: 'delete',
+      url: url,
+      data: data
+    })
+  }
+
+  upload<T>(url: string, fileFormData: FormData): Promise<T> {
     return this.request(
       {
         method: 'post',

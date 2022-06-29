@@ -1,0 +1,46 @@
+/* 浏览器默认样式重置 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:focus {
+    outline: 0;
+}
+
+input::selection {
+    background-color: rgba(102, 118, 255, 0.5);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input {
+    box-shadow: none !important; // 去除firefox 下的红色shadow
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none !important; // 去除Chrome type=number小尾巴
+    }
+}
+
+img {
+    vertical-align: middle;
+}
+
+ul,
+ol {
+    list-style: none;
+}
