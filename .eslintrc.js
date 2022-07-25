@@ -7,9 +7,9 @@ module.exports = {
     'vue/setup-compiler-macros': true
   },
   extends: [
-    'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/typescript/recommended',
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     // eslint-config-prettier 的缩写
     'prettier'
@@ -18,6 +18,9 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2021,
+    ecmaFeatures: {
+      jsx: true
+    },
     sourceType: 'module'
   },
   plugins: ['vue', '@typescript-eslint', 'prettier'],
