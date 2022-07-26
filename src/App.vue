@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { darkTheme, zhCN, MenuOption } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { h } from 'vue'
+// import { h } from 'vue'
 // import type { GlobalTheme } from 'naive-ui'
 // import request from '@/utils/request'
 // This starter template is using Vue 3 <script setup> SFCs

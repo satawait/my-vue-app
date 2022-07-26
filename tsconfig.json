@@ -22,6 +22,6 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "node_modules/naive-ui/volar.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "**/*.d.ts", "node_modules/naive-ui/volar.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

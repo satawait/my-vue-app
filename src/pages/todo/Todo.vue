@@ -47,8 +47,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
+// import { ref } from 'vue'
+// import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
+import { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import type { UploadFileInfo } from 'naive-ui'
 import * as user from '@/apis/user'
 import router from '@/routes'

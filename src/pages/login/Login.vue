@@ -34,9 +34,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
+// import { ref } from 'vue'
+// import { useRouter } from 'vue-router'
+// import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
+import { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { login } from '@/apis/login'
 import { useUserStore } from '@/store/user'
 const router = useRouter()
