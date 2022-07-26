@@ -4,12 +4,15 @@ import vue from '@vitejs/plugin-vue'
 // 1、
 // import ElementPlus from 'unplugin-element-plus/vite'
 // 2、
+// import AutoImport from 'unplugin-auto-import/vite'
 // import Components from 'unplugin-vue-components/vite'
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // naive ui 按需
+import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import viteCompression from 'vite-plugin-compression'
+import { visualizer } from 'rollup-plugin-visualizer'
 // polyfill
 // import legacy from '@vitejs/plugin-legacy'
 import * as path from 'path'
@@ -18,6 +21,14 @@ import * as path from 'path'
 export default defineConfig({
   plugins: [
     vue(),
+    AutoImport({
+      imports: [
+        'vue',
+        {
+          'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']
+        }
+      ]
+    }),
     Components({
       resolvers: [NaiveUiResolver()]
     }),
@@ -28,7 +39,14 @@ export default defineConfig({
       threshold: 10240,
       algorithm: 'gzip',
       ext: '.gz'
+    }),
+    visualizer({
+      open: true,
+      sourcemap: false
     })
+    // AutoImport({
+    //   resolvers: [ElementPlusResolver()],
+    // }),
     // Components({
     //   resolvers: [ElementPlusResolver()]
     // })
@@ -61,6 +79,7 @@ export default defineConfig({
     }
   },
   build: {
+    minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,

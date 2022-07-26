@@ -41,7 +41,7 @@ import { login } from '@/apis/login'
 import { useUserStore } from '@/store/user'
 const router = useRouter()
 const userStore = useUserStore()
-const size = 'large'
+const size = ref<'small' | 'medium' | 'large'>('large')
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const formValue = ref({

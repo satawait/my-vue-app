@@ -52,7 +52,7 @@ import { FormInst, FormItemRule, useMessage, FormRules } from 'naive-ui'
 import type { UploadFileInfo } from 'naive-ui'
 import * as user from '@/apis/user'
 import router from '@/routes'
-const size = 'large'
+const size = ref<'small' | 'medium' | 'large'>('large')
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 interface IformValue {
