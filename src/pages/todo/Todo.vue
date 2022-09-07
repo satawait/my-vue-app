@@ -147,7 +147,7 @@ const handleClick = (type: handlerTypes) => {
       // message.error('验证成功')
     } else {
       console.log(errors)
-      message.error('请填写完整信息')
+      message.error('请填写完整信息~')
     }
   })
 }

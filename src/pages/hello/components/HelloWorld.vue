@@ -12,8 +12,10 @@
 
   <p>See <code>README.md</code> for more information.</p>
 
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
+  <p :class="count % 2 ? darkTheme : lightTheme">
+    <a :class="styled.todoList" href="https://vitejs.dev/guide/features.html" target="_blank">
+      Vite Docs
+    </a>
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
   </p>
@@ -27,6 +29,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import * as styled from '@/assets/style/styled/styled.css'
+import { darkTheme, lightTheme } from '@/assets/style/styled/theme.css'
 
 // defineProps<{ msg: string }>()
 withDefaults(defineProps<{ msg: string }>(), {
@@ -38,7 +42,7 @@ const count = ref(0)
 
 <style scoped lang="scss">
 a {
-  color: #42b983;
+  color: var(--green-color);
 }
 
 label {

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 // 按需加载element-plus 以下两种都可
 // 1、
 // import ElementPlus from 'unplugin-element-plus/vite'
@@ -46,6 +47,7 @@ export default defineConfig({
       algorithm: 'gzip',
       ext: '.gz'
     }),
+    vanillaExtractPlugin(),
     visualizer({
       open: true,
       sourcemap: false
