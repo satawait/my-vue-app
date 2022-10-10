@@ -13,6 +13,21 @@
   <p>See <code>README.md</code> for more information.</p>
 
   <p :class="count % 2 ? darkTheme : lightTheme">
+    <component
+      :is="
+        h(
+          'div',
+          {
+            class: 'test',
+            style: 'color: #ffccee',
+            onClick: () => {
+              cc()
+            }
+          },
+          ['123']
+        )
+      "
+    />
     <a :class="styled.todoList" href="https://vitejs.dev/guide/features.html" target="_blank">
       Vite Docs
     </a>
@@ -28,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, h } from 'vue'
 import * as styled from '@/assets/style/styled/styled.css'
 import { darkTheme, lightTheme } from '@/assets/style/styled/theme.css'
 
@@ -38,6 +53,9 @@ withDefaults(defineProps<{ msg: string }>(), {
 })
 
 const count = ref(0)
+const cc = () => {
+  console.log(123)
+}
 </script>
 
 <style scoped lang="scss">
